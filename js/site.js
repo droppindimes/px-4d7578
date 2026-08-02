@@ -81,18 +81,40 @@
       .replace(/"/g, "&quot;");
   }
 
+  /* Preferred chip order (Matt: NS first, then Reiki/energy, then the rest) */
+  var TAG_ORDER = [
+    "nervous-system",
+    "reiki-energy",
+    "still-stuck",
+    "push-through",
+    "boundaries",
+    "relationships",
+    "parenting",
+    "grief-loss",
+    "retreats",
+    "guest",
+    "rediscovery"
+  ];
+
   function collectTags(list) {
     var seen = {};
-    var out = [];
     list.forEach(function (ep) {
       (ep.tags || []).forEach(function (t) {
-        if (!seen[t]) {
-          seen[t] = true;
-          out.push(t);
-        }
+        if (t) seen[t] = true;
       });
     });
-    out.sort();
+    var out = [];
+    TAG_ORDER.forEach(function (t) {
+      if (seen[t]) {
+        out.push(t);
+        delete seen[t];
+      }
+    });
+    Object.keys(seen)
+      .sort()
+      .forEach(function (t) {
+        out.push(t);
+      });
     return out;
   }
 
@@ -169,12 +191,6 @@
       .join("");
   }
 
-  function syncThemeButtons() {
-    document.querySelectorAll(".theme-filter").forEach(function (btn) {
-      btn.classList.toggle("is-active", btn.getAttribute("data-tag") === activeTag);
-    });
-  }
-
   function setTag(tag) {
     activeTag = tag || "";
     if (chipsEl) {
@@ -182,7 +198,6 @@
         btn.classList.toggle("is-active", (btn.getAttribute("data-tag") || "") === activeTag);
       });
     }
-    syncThemeButtons();
     render();
   }
 
@@ -193,15 +208,6 @@
       setTag(btn.getAttribute("data-tag") || "");
     });
   }
-
-  document.querySelectorAll(".theme-filter").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var tag = btn.getAttribute("data-tag") || "";
-      setTag(activeTag === tag ? "" : tag);
-      var target = document.getElementById("episodes");
-      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  });
 
   if (searchEl) {
     searchEl.addEventListener("input", function () {

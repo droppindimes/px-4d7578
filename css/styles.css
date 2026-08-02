@@ -162,21 +162,21 @@ a:hover {
   text-decoration: none;
   color: var(--ink);
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.2rem;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  font-weight: 650;
+  font-size: clamp(1.28rem, 0.4vw + 1.18rem, 1.45rem);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
 }
 
 .brand small {
   display: block;
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   color: var(--muted);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  margin-top: 0.15rem;
+  margin-top: 0.2rem;
 }
 
 .nav {
