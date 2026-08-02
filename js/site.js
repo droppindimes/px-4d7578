@@ -70,7 +70,25 @@
   }
 
   function tagLabel(tag) {
-    return String(tag || "").replace(/-/g, " ");
+    var map = {
+      "nervous-system": "Nervous system",
+      "reiki-energy": "Reiki & energy",
+      "still-stuck": "Still stuck",
+      "push-through": "Push-through",
+      "boundaries": "Boundaries",
+      "relationships": "Relationships",
+      "parenting": "Parenting",
+      "grief-loss": "Grief & loss",
+      "retreats": "Retreats",
+      "guest": "Guests",
+      "rediscovery": "Rediscovery"
+    };
+    if (map[tag]) return map[tag];
+    return String(tag || "")
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, function (c) {
+        return c.toUpperCase();
+      });
   }
 
   function escapeHtml(str) {
