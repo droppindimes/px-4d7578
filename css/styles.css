@@ -2011,3 +2011,258 @@ button.theme-card.is-active h2 {
     transition: none;
   }
 }
+
+/* ——— Quiet editorial 2026-08-24: kill the 2026 coach kit ——— */
+
+.is-quiet {
+  --radius-pill: 0.55rem;
+}
+
+.is-quiet::before {
+  animation: none;
+  background:
+    radial-gradient(ellipse 70% 50% at 12% 0%, color-mix(in srgb, var(--gold) 18%, transparent) 0%, transparent 55%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+}
+
+.is-quiet .hero::before,
+.is-quiet .hero-card::before,
+.is-quiet .card.featured::before,
+.is-quiet .stack-card.featured,
+.is-quiet .marquee {
+  display: none !important;
+  animation: none !important;
+}
+
+.is-quiet .btn {
+  border-radius: 0.55rem;
+  border: 0;
+  box-shadow: none;
+  background: var(--forest);
+  transform: none;
+}
+
+.is-quiet .btn:hover {
+  transform: none;
+  filter: none;
+  background: var(--deep);
+  box-shadow: none;
+}
+
+.is-quiet .btn-on-dark {
+  background: #fff;
+  color: var(--deep) !important;
+}
+
+.is-quiet .btn-on-dark:hover {
+  background: color-mix(in srgb, #fff 88%, var(--gold));
+}
+
+.is-quiet .site-header {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+}
+
+.is-quiet .hero-kicker {
+  letter-spacing: 0.06em;
+}
+
+.is-quiet .page-home .hero-home,
+.page-home.is-quiet .hero-home {
+  min-height: unset;
+}
+
+.is-quiet .hero-home {
+  padding-bottom: 2.5rem;
+}
+
+.wrap-letter {
+  width: min(100% - 2.25rem, 40rem);
+  margin-inline: auto;
+}
+
+.see-you {
+  margin: 1.15rem 0 0;
+  color: var(--ink-soft);
+  max-width: 38ch;
+}
+
+.role-line {
+  margin: 1.1rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+.outcomes-letter {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.outcomes-letter > li {
+  padding: 1.05rem 0;
+  border-top: 1px solid var(--line);
+  background: none;
+  box-shadow: none;
+}
+
+.outcomes-letter > li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.outcomes-letter h3 {
+  margin: 0 0 0.25rem;
+}
+
+.outcomes-letter p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.ep-rows {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+}
+
+.ep-rows > li {
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.ep-rows > li:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.ep-rows h3 {
+  margin: 0.2rem 0 0.35rem;
+  font-size: 1.15rem;
+}
+
+.ep-rows h3 a {
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.ep-rows h3 a:hover {
+  color: var(--forest);
+}
+
+.offer-letter {
+  display: grid;
+  gap: 0;
+}
+
+.offer-block {
+  padding: 1.35rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.offer-block:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.offer-block h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.35rem;
+}
+
+.offer-block h2 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.offer-block h2 a:hover {
+  color: var(--forest);
+}
+
+.offer-block p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.offer-block--start h2 {
+  color: var(--forest);
+}
+
+.offer-block--reiki h2 {
+  font-size: 1.15rem;
+}
+
+.costa-line {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  max-width: 42ch;
+}
+
+.strip-lead {
+  color: color-mix(in srgb, #fff 82%, var(--gold));
+  max-width: 40ch;
+  margin: 0 0 1.25rem;
+}
+
+.is-quiet .strip-dark .wrap-letter h2 {
+  color: #fff;
+}
+
+.is-quiet .cover-frame.sleeve img {
+  border-radius: 0.35rem;
+  box-shadow: 0 18px 40px rgba(22, 32, 28, 0.14);
+  border: 1px solid color-mix(in srgb, #b8a5c8 35%, var(--line));
+}
+
+.is-quiet .hero-visual {
+  align-self: center;
+}
+
+.is-quiet .card,
+.is-quiet .episode-card:hover,
+.is-quiet .stack-card:hover {
+  transform: none;
+  box-shadow: var(--shadow);
+}
+
+.is-quiet .episode-list {
+  gap: 0;
+}
+
+.is-quiet .episode-card {
+  box-shadow: none;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  padding: 1.15rem 0;
+}
+
+.is-quiet .episode-card:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.is-quiet .book-panel {
+  box-shadow: none;
+  background: var(--card);
+}
+
+.is-quiet .hero-home h1 em {
+  color: var(--forest);
+}
+
+.is-quiet .about-story .hero-kicker {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .is-quiet .hero-grid {
+    align-items: center;
+  }
+
+  .is-quiet .cover-frame.sleeve {
+    max-width: 18rem;
+  }
+}
