@@ -727,7 +727,7 @@ h3 {
   padding: clamp(1.5rem, 4vw, 2.25rem);
   box-shadow: var(--shadow);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .book-panel::after {
@@ -1781,5 +1781,233 @@ button.theme-card.is-active h2 {
 @media (prefers-reduced-motion: reduce) {
   .episode-card:hover {
     transform: none;
+  }
+}
+
+/* ——— v3 2026-08-24: Laura approved-foundation refinements ——— */
+
+.header-actions {
+  display: none;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: auto;
+}
+
+.btn-compact {
+  display: none;
+  padding: 0.58rem 1.05rem;
+  font-size: 0.88rem;
+}
+
+.nav-toggle {
+  display: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  background: var(--card);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 1.1rem;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.cover-frame {
+  margin: 0;
+  max-width: 22rem;
+  width: 100%;
+}
+
+.cover-frame img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: calc(var(--radius) + 0.35rem);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--line);
+  background: var(--deep);
+}
+
+.cover-frame figcaption,
+.portrait-slot figcaption {
+  margin: 0.65rem 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  position: static;
+  transform: none;
+  background: none;
+  padding: 0;
+  text-transform: none;
+  font-weight: 500;
+  white-space: normal;
+  color: var(--muted);
+}
+
+.cover-frame--small {
+  max-width: 11rem;
+}
+
+.hero-visual {
+  display: grid;
+  gap: 1rem;
+  justify-items: stretch;
+}
+
+.featured-eps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .featured-eps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.podcast-more {
+  margin: 1.25rem 0 0;
+}
+
+.horizon-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(1.35rem, 3vw, 1.85rem) clamp(1.35rem, 3vw, 2rem);
+  box-shadow: var(--shadow);
+  max-width: 42rem;
+}
+
+.horizon-card h2 {
+  margin-bottom: 0.5rem;
+}
+
+.horizon-card p {
+  margin: 0 0 0.85rem;
+  color: var(--ink-soft);
+}
+
+.horizon-card--quiet {
+  background: color-mix(in srgb, var(--mist) 55%, var(--card));
+  box-shadow: none;
+}
+
+.ethics-line {
+  margin: 0.2rem 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.footer-meta {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.podcast-hero {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (min-width: 760px) {
+  .podcast-hero {
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.calendly-inline-widget {
+  min-width: 280px;
+}
+
+.notice {
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--mist) 70%, white);
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 639px) {
+  .header-actions {
+    display: flex;
+  }
+
+  .btn-compact {
+    display: inline-flex;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .site-header .inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.45rem;
+    padding: 0.35rem 0 0.65rem;
+  }
+
+  .nav.is-open {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 0.65rem 0.2rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav .btn-nav-cta {
+    display: none;
+  }
+
+  .hero-full-life,
+  .page-home .hero-home h1.hero-full-life {
+    font-size: 2rem;
+    max-width: 14ch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-toggle span {
+    transition: none;
   }
 }
