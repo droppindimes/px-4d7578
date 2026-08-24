@@ -17,11 +17,17 @@
   <header class="site-header">
     <div class="wrap inner">
       <a class="brand" href="index.html">Rediscovering YOU<small>Laura Flowers</small></a>
-      <nav class="nav" aria-label="Primary">
+      <div class="header-actions">
+        <a class="btn btn-compact" href="book.html">Book</a>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="nav" id="primary-nav" aria-label="Primary">
         <a href="work-with-me.html">Work</a>
         <a href="about.html" aria-current="page">About</a>
         <a href="podcast.html">Podcast</a>
-        <a class="btn" href="book.html">Book a free clarity call</a>
+        <a class="btn btn-nav-cta" href="book.html">Book a free clarity call</a>
       </nav>
     </div>
   </header>
@@ -33,8 +39,9 @@
           <p class="hero-kicker">About</p>
           <h1>Laura Flowers</h1>
           <p class="lede big">Fellow traveler on this journey of rediscovery.</p>
-          <p class="short">Warm, direct guidance — grounded in nearly two decades as a school psychologist, and shaped by coaching, Reiki, and real conversation.</p>
+          <p class="short">Warm and direct. Nearly two decades as a school psychologist — plus coaching, Reiki, and real conversation. The work is credible without turning into a clinical office.</p>
           <ul class="chip-list horizontal">
+            <li>School psychologist</li>
             <li>Life coach</li>
             <li>Reiki Master</li>
             <li>Podcast host</li>
@@ -45,34 +52,29 @@
             <a class="text-link" href="podcast.html">Podcast →</a>
           </div>
         </div>
-        <div class="portrait-slot" role="img" aria-label="Laura Flowers — photo coming">
-          <div class="portrait-abstract" aria-hidden="true">
-            <span class="portrait-shape portrait-shape--1"></span>
-            <span class="portrait-shape portrait-shape--2"></span>
-            <span class="portrait-shape portrait-shape--3"></span>
-            <span class="portrait-shape portrait-shape--4"></span>
-          </div>
-          <p class="portrait-caption">Photo coming</p>
-        </div>
+        <figure class="portrait-slot cover-frame">
+          <img src="assets/podcast-cover.jpg" width="600" height="600" alt="Rediscovering YOU podcast artwork — placeholder until Laura’s portraits are placed" />
+          <figcaption>Official podcast artwork. More portraits of Laura go here before this is live on her domain.</figcaption>
+        </figure>
       </div>
     </section>
 
     <section class="section-tight band-mist">
       <div class="wrap about-story">
         <article class="story-block">
-          <p class="hero-kicker">Background</p>
-          <h2>Nearly two decades in schools</h2>
-          <p>As a school psychologist, Laura has walked alongside children, families, and educators through growth, stress, and change. That depth in human development, behavior, and nervous-system regulation informs how she coaches adults today — with the steadiness of clinical training, without turning the work into a clinical office.</p>
-        </article>
-        <article class="story-block">
           <p class="hero-kicker">Why Rediscovering YOU</p>
           <h2>Who you are beneath the roles</h2>
-          <p>Rediscovering YOU is the thread that connects coaching, podcast, Reiki, and future retreats: helping capable women reconnect with who they are beneath responsibilities, expectations, old patterns, and life roles. Lives that look good on paper still deserve a self that feels alive inside them.</p>
+          <p>Laura created Rediscovering YOU for capable women who have spent years taking care of everything and everyone — and quietly lost connection with their own needs, identity, intuition, and sense of direction. The thread is simple: reconnect with who you are beneath responsibilities, expectations, old patterns, and life roles. Lives that look good on paper still deserve a self that feels alive inside them.</p>
+        </article>
+        <article class="story-block">
+          <p class="hero-kicker">Background</p>
+          <h2>Nearly two decades in schools</h2>
+          <p>As a school psychologist, Laura has walked alongside children, families, and educators through growth, stress, and change. That depth in human development, behavior, and nervous-system regulation informs how she coaches adults today — with the steadiness of clinical training, without asking you to become a patient.</p>
         </article>
         <article class="story-block">
           <p class="hero-kicker">How she works</p>
           <h2>Psychology-informed coaching</h2>
-          <p>Psychology-informed coaching that integrates nervous-system awareness, intuitive work, and practical change. Credible and compassionate — a room where you can be honest, and leave with something you can use.</p>
+          <p>Psychology-informed coaching that integrates nervous-system awareness, intuitive work, and practical change. A room where you can be honest, and leave with something you can use. Podcast host. Reiki Master. Retreat facilitator. One person behind the work.</p>
         </article>
         <aside class="notice about-notice">
           <strong>Coaching is not therapy.</strong>
@@ -91,7 +93,10 @@
 
   <footer class="site-footer compact">
     <div class="wrap inner">
-      <span><strong>Laura Flowers LLC</strong> · Connecticut-based · virtual</span>
+      <div class="footer-meta">
+        <span><strong>Laura Flowers LLC</strong> · Connecticut-based · virtual</span>
+        <p class="ethics-line">Coaching, not therapy.</p>
+      </div>
       <a class="btn" href="book.html">Book a free clarity call</a>
     </div>
   </footer>
