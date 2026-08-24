@@ -34,6 +34,7 @@
   --radius-pill: 999px;
   --max: 40rem;
   --wide: 68rem;
+  --gutter: 1.25rem;
   --font-display: "Fraunces", "Georgia", serif;
   --font-body: "DM Sans", system-ui, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -113,7 +114,7 @@ a:hover {
 
 /* Layout */
 .wrap {
-  width: min(100% - 2.25rem, var(--wide));
+  width: min(100% - (2 * var(--gutter)), var(--wide));
   margin-inline: auto;
 }
 
@@ -884,8 +885,8 @@ h3 {
 .hero-grid {
   display: grid;
   gap: 2rem;
-  align-items: end;
-  width: min(100% - 2.25rem, var(--wide));
+  align-items: start;
+  width: min(100% - (2 * var(--gutter)), var(--wide));
   margin-inline: auto;
   position: relative;
   z-index: 1;
@@ -2303,19 +2304,30 @@ button.theme-card.is-active h2 {
   max-width: 42ch;
 }
 
-/* Desktop pack: letter, not a skinny column in an empty ocean */
+/* One column on desktop: header, hero, letter, footer share the same edges */
 @media (min-width: 900px) {
-  .wrap-letter {
-    width: min(100% - 3rem, 52rem);
+  :root {
+    --gutter: 2.5rem;
+  }
+
+  .wrap,
+  .wrap-letter,
+  .hero-grid,
+  .book-layout,
+  .about-story,
+  .is-quiet .wrap-letter.offer-letter,
+  .wrap-letter.offer-letter,
+  .page-podcast .section-tight .wrap {
+    width: min(100% - (2 * var(--gutter)), var(--wide));
+    max-width: var(--wide);
+    margin-inline: auto;
   }
 
   .is-quiet .hero-grid,
   .is-quiet .about-grid.wrap,
   .is-quiet .podcast-hero {
-    width: min(100% - 3rem, 58rem);
-    margin-inline: auto;
-    grid-template-columns: minmax(0, 1fr) 16.5rem;
-    gap: 2.25rem 2.75rem;
+    grid-template-columns: minmax(0, 1fr) 17rem;
+    gap: 2rem 3rem;
     align-items: start;
   }
 
@@ -2323,58 +2335,35 @@ button.theme-card.is-active h2 {
   .is-quiet .cover-frame.sleeve {
     justify-self: end;
     align-self: start;
-  }
-
-  .is-quiet .cover-frame.sleeve {
-    max-width: 16.5rem;
+    max-width: 17rem;
   }
 
   .hero-home h1,
   .page-home .hero-home h1.hero-full-life,
   .hero-full-life {
     max-width: none;
-    font-size: clamp(2.35rem, 2.6vw, 2.95rem);
+    font-size: clamp(2.35rem, 2.5vw, 2.85rem);
     line-height: 1.14;
   }
 
   .is-quiet .hero-slim h1,
   .hero-slim h1 {
-    max-width: 18ch;
-    font-size: clamp(2.1rem, 2.4vw, 2.65rem);
+    max-width: none;
+    font-size: clamp(2.05rem, 2.2vw, 2.55rem);
     line-height: 1.15;
-  }
-
-  .page-podcast .hero-slim h1 {
-    max-width: 16ch;
   }
 
   .page-home .lede,
   .is-quiet .hero .lede {
-    max-width: 44ch;
+    max-width: 48ch;
   }
 
   .outcomes-letter {
     grid-template-columns: 1fr 1fr;
-    column-gap: 2.5rem;
+    column-gap: 3rem;
   }
 
-  .about-story {
-    max-width: 52rem;
-    margin-inline: auto;
-  }
-
-  .is-quiet .wrap-letter.offer-letter,
-  .wrap-letter.offer-letter {
-    width: min(100% - 3rem, 52rem);
-    max-width: 52rem;
-  }
-
-  .book-layout {
-    width: min(100% - 3rem, 64rem);
-    margin-inline: auto;
-  }
-
-  .page-podcast .section-tight .wrap {
-    width: min(100% - 3rem, 52rem);
+  .is-quiet .hero-home {
+    padding: 2.75rem 0 2.25rem;
   }
 }
