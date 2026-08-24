@@ -2259,10 +2259,39 @@ button.theme-card.is-active h2 {
 
 @media (min-width: 900px) {
   .is-quiet .hero-grid {
-    align-items: center;
+    align-items: start;
   }
 
   .is-quiet .cover-frame.sleeve {
     max-width: 18rem;
   }
+}
+
+.is-quiet .band-mist {
+  background: var(--bg-deep);
+  box-shadow: none;
+}
+
+.is-quiet .offer-block--start h2 {
+  color: var(--ink);
+}
+
+.is-quiet .cover-frame.sleeve img {
+  border-color: color-mix(in srgb, var(--clay) 35%, var(--line));
+}
+
+.is-quiet .ep-rows h3 {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.is-quiet .offer-letter.wrap-letter,
+.wrap-letter.offer-letter {
+  max-width: 44rem;
+  width: min(100% - 2.25rem, 44rem);
+}
+
+.eps-all {
+  margin-top: 2.5rem;
 }
