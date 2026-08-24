@@ -9,6 +9,27 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
+  /* Mobile hamburger */
+  var nav = document.getElementById("primary-nav");
+  var toggle = document.querySelector(".nav-toggle");
+  if (nav && toggle) {
+    var setOpen = function (open) {
+      nav.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Menu");
+      document.body.classList.toggle("nav-open", open);
+    };
+    toggle.addEventListener("click", function () {
+      setOpen(!nav.classList.contains("is-open"));
+    });
+    nav.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setOpen(false);
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 639) setOpen(false);
+    });
+  }
+
   /* Podcast page: fetch episodes, search + tag filter */
   var listEl = document.getElementById("episode-list");
   if (!listEl) return;
@@ -21,6 +42,14 @@
   var episodes = [];
 
   var FALLBACK = [
+    {
+      episode: "99",
+      title: "What I’m Rediscovering Right Now: Midlife, Identity, Change & Starting Again",
+      link: "https://rediscovering-you.simplecast.com/episodes/what-im-rediscovering-right-now-midlife-identity-change-starting-again-1c3gASrE",
+      duration_min: 41.3,
+      summary: "After some time away, Laura is back — overcommitment, Iceland, identity, and rediscovering yourself in real time.",
+      tags: ["rediscovery", "push-through", "parenting"]
+    },
     {
       episode: "98",
       title: "Still a Mother: Jennifer Crouse on Full-Term Stillbirth, Grief, and Remembering Charlotte",
