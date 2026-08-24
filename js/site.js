@@ -231,7 +231,7 @@
           (tags ? '<div class="ep-tags">' + tags + "</div>" : "") +
           '<a class="text-link ep-listen" href="' +
           escapeHtml(ep.link) +
-          '" target="_blank" rel="noopener">Listen on Simplecast →</a>' +
+          '" target="_blank" rel="noopener">Listen →</a>' +
           "</li>"
         );
       })
@@ -279,7 +279,7 @@
     .catch(function () {
       episodes = FALLBACK;
       buildChips(collectTags(episodes));
-      setStatus("Showing a few recent episodes (full list unavailable offline).");
+      setStatus("I can’t load the full list right now — try Apple Podcasts, or these recent episodes.");
       render();
     });
 })();
