@@ -2295,3 +2295,86 @@ button.theme-card.is-active h2 {
 .eps-all {
   margin-top: 2.5rem;
 }
+
+.listen-note {
+  margin: 0.85rem 0 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+  max-width: 42ch;
+}
+
+/* Desktop pack: letter, not a skinny column in an empty ocean */
+@media (min-width: 900px) {
+  .wrap-letter {
+    width: min(100% - 3rem, 52rem);
+  }
+
+  .is-quiet .hero-grid,
+  .is-quiet .about-grid.wrap,
+  .is-quiet .podcast-hero {
+    width: min(100% - 3rem, 58rem);
+    margin-inline: auto;
+    grid-template-columns: minmax(0, 1fr) 16.5rem;
+    gap: 2.25rem 2.75rem;
+    align-items: start;
+  }
+
+  .is-quiet .hero-visual,
+  .is-quiet .cover-frame.sleeve {
+    justify-self: end;
+    align-self: start;
+  }
+
+  .is-quiet .cover-frame.sleeve {
+    max-width: 16.5rem;
+  }
+
+  .hero-home h1,
+  .page-home .hero-home h1.hero-full-life,
+  .hero-full-life {
+    max-width: none;
+    font-size: clamp(2.35rem, 2.6vw, 2.95rem);
+    line-height: 1.14;
+  }
+
+  .is-quiet .hero-slim h1,
+  .hero-slim h1 {
+    max-width: 18ch;
+    font-size: clamp(2.1rem, 2.4vw, 2.65rem);
+    line-height: 1.15;
+  }
+
+  .page-podcast .hero-slim h1 {
+    max-width: 16ch;
+  }
+
+  .page-home .lede,
+  .is-quiet .hero .lede {
+    max-width: 44ch;
+  }
+
+  .outcomes-letter {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2.5rem;
+  }
+
+  .about-story {
+    max-width: 52rem;
+    margin-inline: auto;
+  }
+
+  .is-quiet .wrap-letter.offer-letter,
+  .wrap-letter.offer-letter {
+    width: min(100% - 3rem, 52rem);
+    max-width: 52rem;
+  }
+
+  .book-layout {
+    width: min(100% - 3rem, 64rem);
+    margin-inline: auto;
+  }
+
+  .page-podcast .section-tight .wrap {
+    width: min(100% - 3rem, 52rem);
+  }
+}
