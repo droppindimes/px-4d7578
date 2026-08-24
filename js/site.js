@@ -25,6 +25,12 @@
     nav.addEventListener("click", function (e) {
       if (e.target.closest("a")) setOpen(false);
     });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("is-open")) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
     window.addEventListener("resize", function () {
       if (window.innerWidth > 639) setOpen(false);
     });
@@ -185,11 +191,23 @@
     if (statusEl) statusEl.textContent = msg || "";
   }
 
+  function haystack(ep) {
+    return (
+      String(ep.title || "") +
+      " " +
+      String(ep.summary || "") +
+      " " +
+      String(ep.episode || "") +
+      " " +
+      (ep.tags || []).map(tagLabel).join(" ")
+    ).toLowerCase();
+  }
+
   function filtered() {
     var q = searchQuery.trim().toLowerCase();
     return episodes.filter(function (ep) {
       if (activeTag && !(ep.tags || []).includes(activeTag)) return false;
-      if (q && String(ep.title || "").toLowerCase().indexOf(q) === -1) return false;
+      if (q && haystack(ep).indexOf(q) === -1) return false;
       return true;
     });
   }
@@ -279,7 +297,7 @@
     .catch(function () {
       episodes = FALLBACK;
       buildChips(collectTags(episodes));
-      setStatus("I can’t load the full list right now — try Apple Podcasts, or these recent episodes.");
       render();
+      setStatus("I can’t load the full list right now — try Apple Podcasts, or these recent episodes.");
     });
 })();
