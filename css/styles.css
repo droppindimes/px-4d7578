@@ -573,8 +573,8 @@ h3 {
   color: var(--ink-soft);
 }
 
-.offer-block--reiki h2 {
-  font-size: 1.15rem;
+.offer-block p + p {
+  margin-top: 0.65rem;
 }
 
 /* Notice */
@@ -786,6 +786,10 @@ h3 {
 .story-block p {
   margin: 0;
   color: var(--ink-soft);
+}
+
+.story-block p + p {
+  margin-top: 0.65rem;
 }
 
 .about-notice {
