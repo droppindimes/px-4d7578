@@ -32,7 +32,7 @@
       }
     });
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 639) setOpen(false);
+      if (window.innerWidth > 899) setOpen(false);
     });
   }
 
