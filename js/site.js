@@ -36,6 +36,27 @@
     });
   }
 
+  /* Warm the two pages people actually click next, on intent only */
+  var PREFETCH = ["book.html", "work-with-me.html"];
+  var prefetched = {};
+  var warm = function (href) {
+    if (prefetched[href]) return;
+    prefetched[href] = true;
+    var link = document.createElement("link");
+    link.rel = "prefetch";
+    link.href = href;
+    document.head.appendChild(link);
+  };
+  PREFETCH.forEach(function (href) {
+    document.querySelectorAll('a[href="' + href + '"]').forEach(function (a) {
+      var onIntent = function () {
+        warm(href);
+      };
+      a.addEventListener("pointerenter", onIntent, { once: true });
+      a.addEventListener("focus", onIntent, { once: true });
+    });
+  });
+
   /* Podcast page: fetch episodes, search + tag filter */
   var listEl = document.getElementById("episode-list");
   if (!listEl) return;
@@ -238,7 +259,7 @@
           '<span class="ep-num">Ep ' +
           escapeHtml(ep.episode) +
           "</span>" +
-          (dur ? " · " + dur : "") +
+          (dur ? ' · <span class="ep-dur">' + dur + "</span>" : "") +
           "</div>" +
           "<h3><a href=\"" +
           escapeHtml(ep.link) +
