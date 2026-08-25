@@ -113,15 +113,12 @@ section[id] {
   margin-inline: auto;
 }
 
-.wrap-letter {
-  width: min(100% - 2.25rem, var(--max));
+/* Letter columns start on the header's left edge instead of centring themselves */
+.wrap-letter,
+.about-story {
+  width: min(100% - (2 * var(--gutter)), var(--max));
   max-width: var(--max);
-  margin-inline: auto;
-}
-
-.wrap-letter.offer-letter {
-  width: min(100% - 2.25rem, 44rem);
-  max-width: 44rem;
+  margin-inline: max(var(--gutter), calc((100% - var(--wide)) / 2)) auto;
 }
 
 /* Header */
@@ -655,6 +652,11 @@ h3 {
   margin-top: 0.65rem;
 }
 
+.offer-block p.offer-fact {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
 /* Notice */
 .notice {
   padding: 1rem 1.15rem;
@@ -849,17 +851,9 @@ h3 {
   align-items: center;
 }
 
-@media (min-width: 800px) {
-  .about-grid {
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 3rem;
-  }
-}
-
 .about-story {
   display: grid;
   gap: 1.75rem;
-  max-width: 42rem;
 }
 
 .story-block h2 {
@@ -1066,18 +1060,14 @@ h3 {
   }
 
   /* Restated after .wrap so the wide container can't win the cascade here */
-  .wrap-letter {
-    width: min(100% - 2.25rem, var(--max));
-    max-width: var(--max);
-  }
-
+  .wrap-letter,
   .about-story {
-    width: min(100% - 2.25rem, 42rem);
-    max-width: 42rem;
+    width: min(100% - (2 * var(--gutter)), var(--max));
+    max-width: var(--max);
+    margin-inline: max(var(--gutter), calc((100% - var(--wide)) / 2)) auto;
   }
 
   .hero-grid,
-  .about-grid,
   .podcast-hero {
     grid-template-columns: minmax(0, 1fr) 17rem;
     gap: 2rem 3rem;
@@ -1210,5 +1200,6 @@ h3 {
   .wrap-letter.offer-letter {
     width: auto;
     max-width: none;
+    margin-inline: 0;
   }
 }
