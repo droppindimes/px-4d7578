@@ -1,14 +1,4 @@
 (function () {
-  /* Sticky header shadow on scroll */
-  var header = document.querySelector(".site-header");
-  if (header) {
-    var onScroll = function () {
-      header.classList.toggle("is-scrolled", window.scrollY > 8);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-  }
-
   /* Mobile hamburger */
   var nav = document.getElementById("primary-nav");
   var toggle = document.querySelector(".nav-toggle");
@@ -34,6 +24,21 @@
     window.addEventListener("resize", function () {
       if (window.innerWidth > 899) setOpen(false);
     });
+  }
+
+  /* Photograph plates ride under a transparent header. Once the photograph is
+     gone the header has to become paper again, or story copy scrolls under it. */
+  var scrim = document.querySelector("[data-header-scrim]");
+  if (scrim && "IntersectionObserver" in window) {
+    var pin = new IntersectionObserver(
+      function (entries) {
+        document.body.classList.toggle("header-pinned", !entries[0].isIntersecting);
+      },
+      { rootMargin: "-72px 0px 0px 0px", threshold: 0 }
+    );
+    pin.observe(scrim);
+  } else if (scrim) {
+    document.body.classList.add("header-pinned");
   }
 
   /* Warm the two pages people actually click next, on intent only */

@@ -18,8 +18,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
+  <noscript>
+    <style>
+      /* Without the observer that pins it, the header stays paper so story copy
+         never scrolls under transparent type. */
+      .page-about .site-header {
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+      }
+    </style>
+  </noscript>
 </head>
-<body>
+<body class="page-about">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="wrap inner">
@@ -40,9 +50,19 @@
   </header>
 
   <main id="main">
-    <section class="hero hero-slim">
-      <div class="wrap about-grid">
-        <div>
+    <section class="hero hero-about" data-header-scrim>
+      <div class="about-stage">
+        <img
+          class="about-stage-photo"
+          src="assets/laura-stage.jpg"
+          width="1772"
+          height="997"
+          alt="Laura Flowers"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div class="about-stage-copy">
+          <p class="plate-label">About</p>
           <h1>Laura Flowers</h1>
           <p class="lede">I’m not coming at this as someone who has life completely figured out. Rediscovery is something I’m living too.</p>
           <div class="btn-row">
@@ -55,9 +75,10 @@
 
     <section class="section-tight band-mist">
       <div class="wrap about-story">
+        <p class="plate-label">The story</p>
         <article class="story-block">
           <h2>Who I am</h2>
-          <p>I’ve spent nearly two decades as a school psychologist and supporting people. Rediscovering YOU grew out of something broader than my professional background.</p>
+          <p>I’ve spent nearly two decades working in psychology and supporting people. Rediscovering YOU grew out of something broader than my professional background.</p>
           <p>I know what it’s like to build a full life, take care of everyone and everything, check the boxes, and still reach points where you have to ask yourself, “Wait — where am I in all of this?”</p>
         </article>
         <article class="story-block">
@@ -72,7 +93,7 @@
           <p>This isn’t therapy, and I won’t pretend it is.</p>
         </article>
         <div class="story-block">
-          <p>I’m a coach, a Reiki Master, a podcast host, and a retreat facilitator. Those roles support this work. They aren’t the story.</p>
+          <p>I’m a school psychologist, a coach, a Reiki Master, a podcast host, and a retreat facilitator. Those roles support this work. They aren’t the story.</p>
           <p>If you want to hear where I am right now, start with the podcast — <a href="https://rediscovering-you.simplecast.com/episodes/what-im-rediscovering-right-now-midlife-identity-change-starting-again-1c3gASrE" target="_blank" rel="noopener"><em>What I’m Rediscovering Right Now</em></a>.</p>
         </div>
         <aside class="notice about-notice">
@@ -84,6 +105,7 @@
 
     <section class="section-tight">
       <div class="wrap wrap-letter">
+        <p class="plate-label">Start here</p>
         <p class="cta-line">If you want to talk, we can start there.</p>
         <p class="btn-row"><a class="btn" href="book.html">Book a free 15-minute call</a></p>
       </div>
@@ -93,18 +115,20 @@
   <footer class="site-footer">
     <div class="wrap inner">
       <div class="footer-meta">
-        <span><strong>Laura Flowers LLC</strong> · Connecticut · virtual</span>
-        <p class="ethics-line">Coaching, not therapy.</p>
+        <p class="footer-name"><strong>Laura Flowers LLC</strong> · Connecticut · virtual</p>
+        <p class="ethics-line">Coaching, not therapy. · Keep rediscovering you.</p>
       </div>
-      <nav aria-label="Footer">
-        <a href="work-with-me.html">Work with me</a>
-        <a href="about.html">About</a>
-        <a href="podcast.html">Podcast</a>
-        <a href="book.html">Book a call</a>
-      </nav>
-      <div class="socials">
-        <a href="https://www.instagram.com/laurajane23/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.facebook.com/lauraflowersllc/" target="_blank" rel="noopener">Facebook</a>
+      <div class="footer-links">
+        <nav aria-label="Footer">
+          <a href="work-with-me.html">Work with me</a>
+          <a href="about.html">About</a>
+          <a href="podcast.html">Podcast</a>
+          <a href="book.html">Book a call</a>
+        </nav>
+        <div class="socials">
+          <a href="https://www.instagram.com/laurajane23/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/lauraflowersllc/" target="_blank" rel="noopener">Facebook</a>
+        </div>
       </div>
     </div>
   </footer>

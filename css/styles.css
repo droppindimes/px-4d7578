@@ -1,6 +1,6 @@
-/* Rediscovering YOU — quiet editorial theme
-   Consolidated 2026-08-24: single theme (former "is-quiet" overrides merged
-   into base), unused selectors from earlier design iterations removed. */
+/* Rediscovering YOU — printed plates on paper
+   2026-08-26: each page opens with a different kind of plate (type, photograph,
+   index, poster, card) over one unchanging type + hairline system. */
 
 :root {
   --bg: #f6f3ed;
@@ -16,13 +16,18 @@
   --gold: #d9b87a;
   --mist: #e9efe9;
   --card: #fffcf7;
+  /* Plum wash sampled from the show art. Kept light: ink reads 9:1 on it. */
+  --plum-wash: #f0eaf0;
   --line: color-mix(in srgb, var(--forest) 12%, transparent);
+  --rule: color-mix(in srgb, var(--ink) 20%, transparent);
+  --rule-soft: color-mix(in srgb, var(--ink) 10%, transparent);
   --shadow: 0 4px 6px rgba(22, 32, 28, 0.03), 0 18px 40px rgba(22, 32, 28, 0.07);
-  --radius: 1.1rem;
-  --radius-sm: 0.55rem;
+  --radius: 0.4rem;
+  --radius-sm: 0.3rem;
   --max: 40rem;
   --wide: 68rem;
   --gutter: 1.25rem;
+  --header-h: 5.1rem;
   --font-display: "Fraunces", "Georgia", serif;
   --font-body: "DM Sans", system-ui, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -103,8 +108,9 @@ a:hover {
   outline-offset: 3px;
 }
 
-section[id] {
-  scroll-margin-top: 5.5rem;
+section[id],
+.offer-block[id] {
+  scroll-margin-top: calc(var(--header-h) + 1rem);
 }
 
 /* Layout */
@@ -128,10 +134,6 @@ section[id] {
   z-index: 40;
   border-bottom: 1px solid var(--line);
   background: var(--bg);
-}
-
-.site-header.is-scrolled {
-  box-shadow: none;
 }
 
 .site-header .inner {
@@ -331,11 +333,19 @@ section[id] {
   padding: clamp(2.75rem, 6vw, 5rem) 0 clamp(2.5rem, 5vw, 4rem);
 }
 
+/* Type plate: the sentence is the whole first screen, index rail at its base */
 .hero-home {
-  display: flex;
-  align-items: center;
-  padding-top: clamp(3rem, 8vw, 6rem);
-  padding-bottom: 2.5rem;
+  padding: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: clip;
+}
+
+.hero-sentence {
+  align-self: center;
+  width: min(100% - (2 * var(--gutter)), var(--wide));
+  margin-inline: auto;
+  padding: clamp(2.25rem, 7vw, 4.5rem) 0 clamp(2rem, 5vw, 3.25rem);
 }
 
 .hero-slim {
@@ -346,16 +356,35 @@ section[id] {
   padding: clamp(2.25rem, 6vw, 4rem) 0;
 }
 
-.hero-grid {
-  display: grid;
-  gap: 2rem;
-  align-items: start;
-  width: min(100% - (2 * var(--gutter)), var(--wide));
-  margin-inline: auto;
+.hero-lost {
+  padding: clamp(3rem, 12vh, 7rem) 0 clamp(3rem, 10vh, 6rem);
+  overflow: clip;
 }
 
-.hero-content {
-  max-width: 36rem;
+.hero-lost .sentence {
+  font-size: clamp(2.1rem, 6.4vw, 3.4rem);
+}
+
+/* Small-caps furniture: every plate says what it is */
+.plate-label {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 1.15rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clay-text);
+}
+
+.plate-label::before {
+  content: "";
+  flex: none;
+  width: 1.75rem;
+  height: 1px;
+  background: var(--clay);
 }
 
 .hero-kicker {
@@ -387,11 +416,39 @@ section[id] {
   color: var(--forest);
 }
 
-.hero-full-life {
-  font-size: clamp(2.15rem, 5.2vw, 3.35rem);
-  max-width: 18ch;
-  line-height: 1.12;
-  letter-spacing: -0.03em;
+/* The page turn: statement, hairline off the right edge, then the question */
+.sentence {
+  max-width: none;
+  font-size: clamp(2.1rem, 7.4vw, 2.9rem);
+  line-height: 1.1;
+  letter-spacing: -0.032em;
+  margin: 0;
+}
+
+.sentence-a,
+.sentence-b {
+  display: block;
+}
+
+.sentence-b {
+  position: relative;
+  margin-top: 0.42em;
+  padding-top: 0.42em;
+}
+
+.sentence-b::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--clay) 0 3.25rem,
+    var(--rule) 3.25rem 62%,
+    transparent 100%
+  );
 }
 
 .hero-slim h1 {
@@ -401,7 +458,7 @@ section[id] {
 
 /* Display sizes ask Fraunces for its display cut, not the text cut */
 .hero h1,
-.hero-full-life,
+.sentence,
 .hero-slim h1 {
   font-optical-sizing: auto;
   font-variation-settings: "opsz" 144, "SOFT" 50;
@@ -423,19 +480,58 @@ h3 {
 }
 
 .page-home .lede {
-  max-width: 38ch;
-  font-size: 1.05rem;
+  max-width: 44ch;
+  font-size: clamp(1.05rem, 0.5vw + 0.95rem, 1.15rem);
 }
 
-.lede.big {
-  font-size: clamp(1.2rem, 2.5vw, 1.45rem);
-  max-width: 28ch;
-}
-
-.hero-visual {
+/* Index rail: a printed contents line at the base of the first screen */
+.index-rail {
+  width: min(100% - (2 * var(--gutter)), var(--wide));
+  margin-inline: auto;
+  border-top: 1px solid var(--rule);
   display: grid;
-  gap: 1rem;
-  align-self: center;
+}
+
+.index-rail a {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.95rem 0;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.index-rail a:last-child {
+  border-bottom: 0;
+}
+
+.idx-num {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--clay-text);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.idx-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  transition: color 0.2s var(--ease);
+}
+
+.index-rail a:hover .idx-title,
+.index-rail a:focus-visible .idx-title {
+  color: var(--forest);
+}
+
+.idx-note {
+  font-size: 0.88rem;
+  color: var(--muted);
+  max-width: 34ch;
 }
 
 .cover-frame {
@@ -456,10 +552,6 @@ h3 {
   border-radius: 0.35rem;
   box-shadow: 0 18px 40px rgba(22, 32, 28, 0.14);
   border: 1px solid color-mix(in srgb, var(--clay) 35%, var(--line));
-}
-
-.cover-frame--small {
-  max-width: 11rem;
 }
 
 /* Sections */
@@ -520,8 +612,7 @@ h3 {
   letter-spacing: 0.01em;
 }
 
-.cta-line,
-.costa-line {
+.cta-line {
   margin: 0;
   color: var(--ink-soft);
   font-size: 1.05rem;
@@ -657,6 +748,79 @@ h3 {
   font-size: 0.95rem;
 }
 
+/* Work: printed contents list with dot leaders */
+.offer-index {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.offer-index > li {
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.offer-index a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  padding: 0.9rem 0;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.oi-num {
+  flex: none;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--clay-text);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.oi-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1vw + 0.9rem, 1.35rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  transition: color 0.2s var(--ease);
+}
+
+.offer-index a:hover .oi-title,
+.offer-index a:focus-visible .oi-title {
+  color: var(--forest);
+}
+
+/* The leader is decoration; it must not be read aloud or selected */
+.oi-dots {
+  flex: 1 1 2rem;
+  min-width: 1.5rem;
+  height: 1px;
+  transform: translateY(-0.28em);
+  background-image: radial-gradient(circle, var(--rule) 1px, transparent 1.2px);
+  background-size: 0.42rem 1px;
+  background-repeat: repeat-x;
+  background-position: 0 0;
+}
+
+.oi-fact {
+  flex: none;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* Home: the show art gets its own plate, well below the fold */
+.listen-plate {
+  display: grid;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+.listen-plate .cover-frame {
+  max-width: 13rem;
+}
+
 /* Notice */
 .notice {
   padding: 1rem 1.15rem;
@@ -673,16 +837,59 @@ h3 {
   font-weight: 600;
 }
 
-/* Podcast */
-.podcast-hero {
+/* Podcast — poster plate on a wash sampled from the cover art */
+.hero-poster {
+  background: var(--plum-wash);
+  border-bottom: 1px solid var(--rule-soft);
+  padding: clamp(2.25rem, 6vw, 4.25rem) 0 clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.poster-grid {
   display: grid;
-  gap: 1.5rem;
+  gap: 1.75rem;
   align-items: center;
 }
 
+.poster-sleeve {
+  margin: 0;
+  width: 100%;
+  max-width: 13rem;
+}
+
+.poster-sleeve img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 0.3rem;
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  box-shadow: 0 2px 4px rgba(22, 32, 28, 0.06), 0 26px 55px rgba(22, 32, 28, 0.18);
+}
+
+.poster-copy h1 {
+  font-size: clamp(2.05rem, 5.4vw, 2.7rem);
+  max-width: 20ch;
+  margin: 0 0 1rem;
+}
+
+.poster-meta {
+  margin: 1.4rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
 @media (min-width: 760px) {
-  .podcast-hero {
-    grid-template-columns: 1fr auto;
+  .poster-grid {
+    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+    gap: 3rem;
+  }
+
+  .poster-sleeve {
+    max-width: 20rem;
   }
 }
 
@@ -844,11 +1051,94 @@ h3 {
   margin: 1.25rem 0 0;
 }
 
-/* About */
-.about-grid {
+/* About — photograph plate. The header rides the photo, then turns solid paper. */
+.page-about .site-header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: transparent;
+  border-bottom: 0;
+  transition: background-color 0.25s var(--ease);
+}
+
+/* Set once the photograph has scrolled past, so story copy never slides under
+   transparent type. Without JS the noscript block in about.html pins it solid. */
+body.header-pinned .site-header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.page-about .nav.is-open {
+  background: var(--bg);
+}
+
+.hero-about {
+  padding: 0;
+}
+
+.about-stage {
+  position: relative;
+  min-height: 100svh;
   display: grid;
-  gap: 2rem;
-  align-items: center;
+  align-items: end;
+  overflow: hidden;
+}
+
+.about-stage-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 57% 20%;
+}
+
+/* Two scrims: the top one guarantees header contrast on grass *or* on hair;
+   the bottom one hands the photograph back to the paper. */
+.about-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--bg) 80%, transparent) 0%,
+      color-mix(in srgb, var(--bg) 45%, transparent) 9%,
+      transparent 22%
+    ),
+    linear-gradient(
+      180deg,
+      transparent 46%,
+      color-mix(in srgb, var(--bg) 62%, transparent) 74%,
+      var(--bg) 97%
+    );
+}
+
+.about-stage-copy {
+  position: relative;
+  z-index: 1;
+  width: min(100% - (2 * var(--gutter)), 38rem);
+  margin-inline: max(var(--gutter), calc((100% - var(--wide)) / 2)) auto;
+  padding: 0 0 clamp(2.5rem, 6vw, 3.75rem);
+}
+
+.about-stage-copy .plate-label {
+  margin-bottom: 0.9rem;
+}
+
+.about-stage-copy h1 {
+  max-width: 12ch;
+  font-size: clamp(2.6rem, 7.5vw, 4.1rem);
+}
+
+.about-stage-copy .lede {
+  max-width: 32ch;
+}
+
+.about-stage-copy .text-link {
+  color: var(--forest);
 }
 
 .about-story {
@@ -883,20 +1173,32 @@ h3 {
 @media (min-width: 800px) {
   .book-layout {
     grid-template-columns: 1.1fr 0.9fr;
+    align-items: start;
+    gap: 3rem;
+  }
+
+  /* Headline aligns with the top of the calendar card, not its middle */
+  .book-layout > div:first-child {
+    padding-top: clamp(1rem, 4vh, 2.5rem);
   }
 }
 
 .book-layout h1 {
-  font-size: clamp(2.6rem, 7vw, 4rem);
+  font-size: clamp(2.7rem, 7.5vw, 4.4rem);
   max-width: 10ch;
 }
 
 .book-panel {
   background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: calc(var(--radius) + 4px);
-  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border: 1px solid var(--rule-soft);
+  border-top: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: clamp(1.35rem, 3.5vw, 1.9rem);
   position: relative;
+}
+
+.book-panel .plate-label {
+  margin-bottom: 0.7rem;
 }
 
 .book-panel-copy {
@@ -917,28 +1219,34 @@ h3 {
 /* Footer */
 .site-footer {
   margin-top: 1rem;
-  padding: 1.25rem 0 1.75rem;
+  padding: 2rem 0 2.4rem;
   border-top: 1px solid var(--line);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--muted);
 }
 
 .site-footer .inner {
+  width: min(100% - (2 * var(--gutter)), var(--max));
+  max-width: var(--max);
+  margin-inline: max(var(--gutter), calc((100% - var(--wide)) / 2)) auto;
+  display: grid;
+  gap: 1.15rem;
+}
+
+.footer-links {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem 1.5rem;
+  gap: 0.75rem 2rem;
 }
 
 .site-footer nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  gap: 0.55rem 1.15rem;
 }
 
 .site-footer a {
-  color: var(--ink-soft);
+  color: var(--muted);
   text-decoration: none;
   font-weight: 500;
 }
@@ -949,19 +1257,52 @@ h3 {
 
 .footer-meta {
   display: grid;
-  gap: 0.15rem;
+  gap: 0.2rem;
+}
+
+.footer-name {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+}
+
+.footer-name strong {
+  font-weight: 600;
 }
 
 .ethics-line {
-  margin: 0.2rem 0 0;
+  margin: 0;
   font-size: 0.78rem;
   color: var(--muted);
 }
 
 .socials {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.1rem;
+  flex-wrap: nowrap;
+  gap: 0.55rem 1rem;
+  padding-left: 2rem;
+  border-left: 1px solid var(--line);
+}
+
+@media (max-width: 560px) {
+  .site-footer {
+    padding-block: 1.75rem 2rem;
+  }
+
+  .footer-links {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .site-footer nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem 1rem;
+  }
+
+  .socials {
+    padding-left: 0;
+    border-left: 0;
+  }
 }
 
 /* Accessibility helpers */
@@ -998,16 +1339,61 @@ h3 {
 
 /* Mobile nav */
 @media (max-width: 899px) {
+  .about-stage {
+    min-height: 100svh;
+  }
+
+  .about-stage-photo {
+    object-position: 52% 16%;
+  }
+
+  /* Phone keeps its own bottom fade, but the header scrim stays — the nav has to
+     be readable at 390 before any scrolling happens. */
+  .about-stage::after {
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--bg) 82%, transparent) 0%,
+        color-mix(in srgb, var(--bg) 48%, transparent) 8%,
+        transparent 20%
+      ),
+      linear-gradient(
+        180deg,
+        transparent 34%,
+        color-mix(in srgb, var(--bg) 58%, transparent) 62%,
+        var(--bg) 92%
+      );
+  }
+
+  .about-stage-copy {
+    width: min(100% - (2 * var(--gutter)), var(--max));
+    margin-inline: auto;
+    padding: 0 0 2.5rem;
+  }
+
+  /* Phone crops the photograph to her face; a label there lands on her cheek */
+  .about-stage-copy .plate-label {
+    display: none;
+  }
+
+  .poster-sleeve {
+    max-width: min(100%, 17rem);
+  }
+
   .header-actions {
     display: flex;
+    flex-shrink: 0;
   }
 
   .btn-compact {
     display: inline-flex;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 
   .nav-toggle {
     display: inline-flex;
+    flex-shrink: 0;
   }
 
   .nav {
@@ -1034,13 +1420,88 @@ h3 {
     display: none;
   }
 
+  .nav.is-open .btn-nav-cta {
+    display: flex;
+  }
+
   body.nav-open {
     overflow: hidden;
   }
 
-  .hero-full-life {
-    font-size: 2rem;
-    max-width: 14ch;
+  /* Phone: the sentence owns the first screen; the index rail follows it */
+  .hero-sentence {
+    min-height: calc(100svh - var(--header-h) - 2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .sentence-b::before {
+    background: linear-gradient(
+      90deg,
+      var(--clay) 0 2.5rem,
+      var(--rule) 2.5rem 78%,
+      transparent 100%
+    );
+  }
+
+  /* Dot leaders need a wide line to be a leader; below desktop the fact stacks */
+  .offer-index a {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 0.7rem;
+    row-gap: 0.15rem;
+    align-items: baseline;
+  }
+
+  .oi-title {
+    grid-column: 2;
+    min-width: 0;
+  }
+
+  .oi-dots {
+    display: none;
+  }
+
+  .oi-fact {
+    grid-column: 2;
+    text-align: left;
+  }
+}
+
+@media (max-width: 440px) {
+  :root {
+    --gutter: 1rem;
+    --header-h: 4.6rem;
+  }
+
+  .site-header .inner {
+    column-gap: 0.55rem;
+  }
+
+  .brand {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 1.13rem;
+    white-space: nowrap;
+  }
+
+  .brand small {
+    font-size: 0.66rem;
+  }
+
+  .header-actions {
+    gap: 0.35rem;
+  }
+
+  .btn-compact {
+    padding: 0.52rem 0.8rem;
+    font-size: 0.82rem;
+  }
+
+  .nav-toggle {
+    width: 2.55rem;
+    height: 2.55rem;
   }
 }
 
@@ -1052,7 +1513,8 @@ h3 {
 
   /* Full-bleed containers only. Letter columns keep their measure. */
   .wrap,
-  .hero-grid,
+  .hero-sentence,
+  .index-rail,
   .book-layout {
     width: min(100% - (2 * var(--gutter)), var(--wide));
     max-width: var(--wide);
@@ -1067,43 +1529,65 @@ h3 {
     margin-inline: max(var(--gutter), calc((100% - var(--wide)) / 2)) auto;
   }
 
-  .hero-grid,
-  .podcast-hero {
-    grid-template-columns: minmax(0, 1fr) 17rem;
-    gap: 2rem 3rem;
-    align-items: start;
+  /* Home: sentence centred in the remaining screen, rail near the bottom edge */
+  .hero-home {
+    min-height: calc(100svh - var(--header-h) - 2.25rem);
   }
 
-  .hero-visual,
-  .cover-frame.sleeve {
-    justify-self: end;
-    align-self: start;
-    max-width: 17rem;
+  .index-rail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .hero-full-life {
-    max-width: none;
-    font-size: clamp(2.35rem, 2.5vw, 2.85rem);
-    line-height: 1.14;
+  .index-rail a {
+    padding: 1.15rem 1.75rem 1.35rem 0;
+    border-bottom: 0;
+  }
+
+  .index-rail a + a {
+    border-left: 1px solid var(--rule-soft);
+    padding-left: 1.75rem;
+  }
+
+  .sentence {
+    font-size: clamp(2.9rem, 4.4vw, 4.35rem);
+    line-height: 1.06;
   }
 
   .hero-slim h1 {
     max-width: none;
-    font-size: clamp(2.05rem, 2.2vw, 2.55rem);
-    line-height: 1.15;
+    font-size: clamp(2.35rem, 2.9vw, 3.2rem);
+    line-height: 1.14;
   }
 
   .hero .lede {
     max-width: 48ch;
   }
 
+  /* Work: the contents list is the first screen, with the copy below peeking */
+  .hero-index {
+    min-height: calc(100svh - var(--header-h) - 9rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .offer-index {
+    margin-top: 2.75rem;
+  }
+
+  .listen-plate {
+    grid-template-columns: minmax(0, var(--max)) 15rem;
+    gap: 3.5rem;
+  }
+
+  .listen-plate .cover-frame {
+    max-width: 15rem;
+  }
+
   .outcomes-letter {
     grid-template-columns: 1fr 1fr;
     column-gap: 3rem;
-  }
-
-  .hero-home {
-    padding: 2.75rem 0 2.25rem;
   }
 }
 
@@ -1154,7 +1638,8 @@ h3 {
   .calendly-inline-widget,
   .episode-controls,
   .site-footer nav,
-  .socials {
+  .socials,
+  .about-stage-photo {
     display: none !important;
   }
 
