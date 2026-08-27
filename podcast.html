@@ -14,9 +14,9 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/fraunces-italic-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/dmsans-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body class="page-podcast">
@@ -43,7 +43,10 @@
     <section class="hero hero-poster">
       <div class="wrap poster-grid">
         <figure class="poster-sleeve">
-          <img src="assets/podcast-cover.jpg" width="600" height="600" alt="Rediscovering YOU podcast artwork" fetchpriority="high" decoding="async" />
+          <picture>
+            <source type="image/webp" srcset="assets/cover-420.webp 420w, assets/cover-600.webp 600w" sizes="(min-width: 760px) 20rem, 60vw" />
+            <img src="assets/podcast-cover.jpg" width="600" height="600" alt="Rediscovering YOU podcast artwork" fetchpriority="high" decoding="async" />
+          </picture>
         </figure>
         <div class="poster-copy">
           <p class="plate-label">The podcast</p>

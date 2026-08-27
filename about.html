@@ -14,9 +14,9 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/fraunces-italic-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/dmsans-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="css/styles.css" />
   <noscript>
     <style>
@@ -52,15 +52,22 @@
   <main id="main">
     <section class="hero hero-about" data-header-scrim>
       <div class="about-stage">
-        <img
-          class="about-stage-photo"
-          src="assets/laura-stage.jpg"
-          width="1772"
-          height="997"
-          alt="Laura Flowers"
-          fetchpriority="high"
-          decoding="async"
-        />
+        <picture>
+          <source
+            type="image/webp"
+            srcset="assets/stage-640.webp 640w, assets/stage-960.webp 960w, assets/stage-1280.webp 1280w, assets/stage-1772.webp 1772w"
+            sizes="100vw"
+          />
+          <img
+            class="about-stage-photo"
+            src="assets/laura-stage.jpg"
+            width="1772"
+            height="997"
+            alt="Laura Flowers"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
         <div class="about-stage-copy">
           <p class="plate-label">About</p>
           <h1>Laura Flowers</h1>

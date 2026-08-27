@@ -18,9 +18,9 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="assets/fonts/fraunces-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/fraunces-italic-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/dmsans-var.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body class="page-home">
@@ -57,6 +57,28 @@
           <a class="text-link" href="podcast.html">Or start with the podcast →</a>
         </div>
       </div>
+
+      <div class="field" aria-hidden="true">
+        <svg viewBox="0 0 1440 240" preserveAspectRatio="none" focusable="false">
+          <g class="g1">
+            <path d="M0,36 C240,30 480,44 720,38 C960,32 1200,46 1440,40" stroke-opacity="0.10" />
+            <path d="M0,72 C240,66 480,84 720,76 C960,68 1200,86 1440,78" stroke-opacity="0.12" />
+            <path d="M0,108 C200,100 420,120 720,110 C1020,100 1240,122 1440,112" stroke-opacity="0.14" />
+            <path d="M0,144 C240,136 480,158 720,148 C960,138 1200,160 1440,150" stroke-opacity="0.16" />
+            <path d="M0,180 C240,172 480,196 720,186 C960,176 1200,198 1440,188" stroke-opacity="0.18" style="stroke:#c08a5a" />
+            <path d="M0,216 C240,208 480,232 720,222 C960,212 1200,234 1440,224" stroke-opacity="0.20" />
+          </g>
+          <g class="g2">
+            <path d="M0,54 C260,48 500,64 760,56 C1000,50 1240,66 1440,58" stroke-opacity="0.08" />
+            <path d="M0,90 C240,84 500,102 760,94 C1000,86 1240,104 1440,96" stroke-opacity="0.10" />
+            <path d="M0,126 C220,118 460,138 720,128 C980,118 1220,140 1440,130" stroke-opacity="0.11" />
+            <path d="M0,162 C240,154 500,176 760,166 C1000,158 1240,178 1440,168" stroke-opacity="0.12" />
+            <path d="M0,198 C240,190 500,212 760,202 C1000,194 1240,214 1440,204" stroke-opacity="0.13" style="stroke:#c08a5a" />
+            <path d="M0,232 C240,226 500,244 760,236 C1000,230 1240,246 1440,238" stroke-opacity="0.14" />
+          </g>
+        </svg>
+      </div>
+
       <nav class="index-rail" aria-label="Sections">
         <a href="work-with-me.html">
           <span class="idx-num">01</span>
@@ -147,7 +169,10 @@
         <p class="podcast-more"><a class="text-link" href="podcast.html">All episodes →</a></p>
        </div>
         <figure class="cover-frame sleeve">
-          <img src="assets/podcast-cover.jpg" width="600" height="600" alt="Rediscovering YOU podcast artwork" loading="lazy" decoding="async" />
+          <picture>
+            <source type="image/webp" srcset="assets/cover-420.webp 420w, assets/cover-600.webp 600w" sizes="(min-width: 900px) 15rem, 13rem" />
+            <img src="assets/podcast-cover.jpg" width="600" height="600" alt="Rediscovering YOU podcast artwork" loading="lazy" decoding="async" />
+          </picture>
         </figure>
       </div>
     </section>
